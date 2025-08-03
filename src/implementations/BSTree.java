@@ -258,6 +258,10 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>
         return removeMin(node.getLeft());
     }
 
+    /**
+     * Removes the largest element from the BST.
+     * @return the node containing the largest element, or null if the tree is empty
+     */
     @Override
     public BSTreeNode<E> removeMax()
     {
@@ -274,6 +278,11 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>
         }
         return removeMax(root);
     }
+    /**
+     * Helper method to remove the largest element starting from a given node recursively.
+     * @param node the current node to search for the largest element
+     * @return the node containing the largest element
+     */
     private BSTreeNode<E> removeMax(BSTreeNode<E> node)
     {
         if (node.getRight().getRight() == null)
@@ -287,5 +296,5 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E>
     }
 
     /* Iterator Implementations */
-    
+
 }
