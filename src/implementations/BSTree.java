@@ -357,6 +357,39 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
         }
     }
 
-    
+    // Postorder Iterator
+    private class PostorderIterator implements Iterator<E> {
+        private Stack<BSTreeNode<E>> stack1 = new Stack<>();
+        private Stack<BSTreeNode<E>> stack2 = new Stack<>();
+
+        public PostorderIterator() {
+            if (root != null) {
+                stack1.push(root);
+                while (!stack1.isEmpty()) {
+                    BSTreeNode<E> node = stack1.pop();
+                    stack2.push(node);
+                    if (node.getLeft() != null) {
+                        stack1.push(node.getLeft());
+                    }
+                    if (node.getRight() != null) {
+                        stack1.push(node.getRight());
+                    }
+                }
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack2.isEmpty();
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in postorder iterator");
+            }
+            return stack2.pop().getElement();
+        }
+    }
 
 }
