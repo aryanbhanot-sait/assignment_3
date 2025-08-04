@@ -324,6 +324,39 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
         }
     }
 
+    // Preorder Iterator
+    private class PreorderIterator implements Iterator<E> {
+        private Stack<BSTreeNode<E>> stack = new Stack<>();
+
+        public PreorderIterator() {
+            if (root != null) {
+                stack.push(root);
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in preorder iterator");
+            }
+            BSTreeNode<E> node = stack.pop();
+            E result = node.getElement();
+            // Push right first so left is processed first
+            if (node.getRight() != null) {
+                stack.push(node.getRight());
+            }
+            if (node.getLeft() != null) {
+                stack.push(node.getLeft());
+            }
+            return result;
+        }
+    }
+
     
 
 }
