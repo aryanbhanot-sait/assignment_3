@@ -290,6 +290,40 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
         return new PostorderIterator();
     }
 
+    // Inorder Iterator
+    private class InorderIterator implements Iterator<E> {
+        private Stack<BSTreeNode<E>> stack = new Stack<>();
+
+        public InorderIterator() {
+            pushLeft(root);
+        }
+
+        private void pushLeft(BSTreeNode<E> node) {
+            while (node != null) {
+                stack.push(node);
+                node = node.getLeft();
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException("No more elements in inorder iterator");
+            }
+            BSTreeNode<E> node = stack.pop();
+            E result = node.getElement();
+            if (node.getRight() != null) {
+                pushLeft(node.getRight());
+            }
+            return result;
+        }
+    }
+
     
 
 }
