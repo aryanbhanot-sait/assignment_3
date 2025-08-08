@@ -1,12 +1,15 @@
 package implementations;
 
+import java.io.Serializable;
+
 /**
  * Represents a node in a Binary Search Tree (BST).
  * Each node contains an element of generic type E, and references to its left and right children.
  */
 
-public class BSTreeNode<E>
+public class BSTreeNode<E> implements Serializable
 {
+    private static final long serialVersionUID = 1L;
     private E element;
     private BSTreeNode<E> left;
     private BSTreeNode<E> right;
