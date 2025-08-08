@@ -38,9 +38,9 @@ public class BSTree<E extends Comparable<? super E>> implements BSTreeADT<E> {
      * @throws NullPointerException if the tree is empty.
      */
     @Override
-    public BSTreeNode<E> getRoot() throws NoSuchElementException {
+    public BSTreeNode<E> getRoot() throws NullPointerException {
         if (isEmpty()) {
-            throw new NoSuchElementException("The tree is empty.");
+            throw new NullPointerException("The tree is empty.");
         }
         return root;
     }
